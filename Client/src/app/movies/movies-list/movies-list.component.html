@@ -1,0 +1,33 @@
+<app-generic-list [list]="movies">
+  <!-- <ng-container loading>
+    This is loading...
+  </ng-container>
+  <ng-container empty>
+    There are <b>no</b> content to display
+  </ng-container> -->
+  <ng-container content>
+    <div class="movies-container">
+
+      <div *ngFor="let movie of movies; let index = index" class="movie-container">
+        <a [routerLink]="'/movie/' + movie.id">
+          <img [src]="movie.poster" alt="Poster"/>
+        </a>
+        <p style="margin-bottom: 0%;">
+          <a [routerLink]="'/movie/' + movie.id">{{movie.title}}</a>
+        </p>
+        <div>
+          <app-autorize-view [role]="'admin'">
+            <ng-container authorized>
+              <a [routerLink]="'movies/edit/'+ movie.id" mat-flat-button color="primary"> Edit</a>
+          <button mat-flat-button color="warn" type="button" (click)="remove(movie.id)"> Delete </button>
+            </ng-container>
+          </app-autorize-view>
+        </div>
+
+      </div>
+
+    </div>
+  </ng-container>
+</app-generic-list>
+
+
